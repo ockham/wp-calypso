@@ -1,5 +1,5 @@
 const PLUGIN_NAME = 'ExtractManifestPlugin';
-const { ConcatSource } = require( 'webpack-sources' );
+const { ConcatSource } = require( 'webpack' ).sources;
 
 class ExtractManifestPlugin {
 	constructor( options = {} ) {
