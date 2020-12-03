@@ -13,6 +13,7 @@ import { recordTracksEvent } from 'calypso/lib/analytics/tracks';
 import { gaRecordEvent } from 'calypso/lib/analytics/ga';
 import Gridicon from 'calypso/components/gridicon';
 import PluginsActions from 'calypso/lib/plugins/actions';
+import { getPluginStatusesByType } from 'calypso/state/plugins/installed/selectors';
 import { updatePlugin } from 'calypso/state/plugins/installed/actions';
 
 /**
@@ -29,7 +30,6 @@ class PluginSiteUpdateIndicator extends React.Component {
 			ID: PropTypes.number.isRequired,
 		} ),
 		plugin: PropTypes.shape( { slug: PropTypes.string } ),
-		notices: PropTypes.object.isRequired,
 		expanded: PropTypes.bool,
 	};
 
@@ -53,8 +53,9 @@ class PluginSiteUpdateIndicator extends React.Component {
 	};
 
 	getOngoingUpdates = () => {
-		return this.props.notices.inProgress.filter(
-			( log ) => log.site.ID === this.props.site.ID && log.action === 'UPDATE_PLUGIN'
+		return this.props.inProgressStatuses.filter(
+			( status ) =>
+				parseInt( status.siteId ) === this.props.site.ID && status.action === 'UPDATE_PLUGIN'
 		);
 	};
 
@@ -69,7 +70,7 @@ class PluginSiteUpdateIndicator extends React.Component {
 
 		if ( isUpdating ) {
 			message = this.props.translate( 'Updating to version %(version)s', {
-				args: { version: ongoingUpdates[ 0 ].plugin.update.new_version },
+				args: { version: this.props.site.plugin.update.new_version },
 			} );
 		} else {
 			message = this.props.translate( 'Update to %(version)s', {
@@ -115,4 +116,9 @@ class PluginSiteUpdateIndicator extends React.Component {
 	}
 }
 
-export default connect( null, { updatePlugin } )( localize( PluginSiteUpdateIndicator ) );
+export default connect(
+	( state ) => ( {
+		inProgressStatuses: getPluginStatusesByType( state, 'inProgress' ),
+	} ),
+	{ updatePlugin }
+)( localize( PluginSiteUpdateIndicator ) );
