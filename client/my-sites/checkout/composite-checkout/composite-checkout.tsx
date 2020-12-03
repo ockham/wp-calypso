@@ -40,6 +40,7 @@ import QueryContactDetailsCache from 'calypso/components/data/query-contact-deta
 import QuerySitePlans from 'calypso/components/data/query-site-plans';
 import QueryPlans from 'calypso/components/data/query-plans';
 import QueryProducts from 'calypso/components/data/query-products-list';
+import QueryExperiments from 'calypso/components/data/query-experiments';
 import { clearPurchases } from 'calypso/state/purchases/actions';
 import { fetchReceiptCompleted } from 'calypso/state/receipts/actions';
 import { requestSite } from 'calypso/state/sites/actions';
@@ -691,6 +692,7 @@ export default function CompositeCheckout( {
 			<QuerySitePlans siteId={ siteId } />
 			<QuerySitePurchases siteId={ siteId } />
 			<QueryPlans />
+			<QueryExperiments />
 			<QueryProducts />
 			<QueryContactDetailsCache />
 			<PageViewTracker path={ analyticsPath } title="Checkout" properties={ analyticsProps } />
