@@ -1,10 +1,10 @@
 const path = require( 'path' );
 const { createHash } = require( 'crypto' );
 const rtlcss = require( 'rtlcss' );
-const { ConcatSource } = require( 'webpack-sources' );
 const cssDiff = require( '@romainberger/css-diff' );
 const { forEachOfLimit } = require( 'async' );
 const cssnano = require( 'cssnano' );
+const { ConcatSource } = require( 'webpack' ).sources;
 
 const pluginName = 'WebpackRTLPlugin';
 
