@@ -89,6 +89,23 @@ describe( `[${ host }] Experimental features we depend on are available (${ scre
 				} );
 			}
 		} );
+
+		step( 'Experimental data we depend on is available', async () => {
+			const coreEditorSettings = await driver.executeScript(
+				`window.wp.data.select( 'core/editor' ).?getSettings()`
+			);
+			assert.isObject( coreEditorSettings, 'core/editor settings were not found' );
+			assert.notStrictEqual(
+				coreEditorSettings.__experimentalBlockPatterns,
+				undefined,
+				'__experimentalBlockPatterns was not found, please contact #team-ganon to update premium pattern highlighting'
+			);
+			assert.notStrictEqual(
+				coreEditorSettings.__experimentalBlockPatternsMissing,
+				undefined,
+				'__experimentalBlockPatternsMissing was not found, please contact #team-ganon to update premium pattern highlighting'
+			);
+		} );
 	}
 
 	after( async () => {
