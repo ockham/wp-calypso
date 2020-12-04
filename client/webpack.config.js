@@ -271,6 +271,9 @@ const webpackConfig = {
 				// Alias calypso to ./client. This allows for smaller bundles, as it ensures that
 				// importing `./client/file.js` is the same thing than importing `calypso/file.js`
 				calypso: __dirname,
+
+				// Node polyfills
+				process: 'process/browser',
 			},
 			getAliasesForExtensions( {
 				extensionsDirectory: path.resolve( __dirname, 'extensions' ),
