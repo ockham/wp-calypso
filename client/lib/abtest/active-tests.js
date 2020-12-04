@@ -77,14 +77,6 @@ export default {
 		defaultVariation: 'noOffer',
 		allowExistingUsers: true,
 	},
-	passwordlessSignup: {
-		datestamp: '20291029',
-		variations: {
-			passwordless: 0,
-			default: 100,
-		},
-		defaultVariation: 'default',
-	},
 	newSiteGutenbergOnboarding: {
 		datestamp: '20200818',
 		variations: {
