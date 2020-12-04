@@ -6,6 +6,7 @@
   the build (ESM or CJS) instead of both that are done by default
 - Add more target ECMAScript versions to Terser config and switch dependencies
 - Migrated from `webpack-rtl-plugin` to `@automattic/webpack-rtl-plugin`.
+- Migrated form `@automattic/min-css-extract-plugin-with-rtl` to `mini-css-extract-plugin`
 - Breaking change: Moved webpack to peerDependency
 - Breaking change: Migrated from wepback 4 to webpack 5
 
